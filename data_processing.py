@@ -83,35 +83,3 @@ df_Point_T.loc[:,((num_random_Wafer - num_first_Wafer) * num_Feature):((num_rand
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-df_1 = df.loc[:,'Recipe_Step_Number':(df.iloc[:,-1]).name].apply(pd.to_numeric, errors = 'coerce')
-#Step부터 end col factor까지 numeric으로 타입 
-#df_1 = df.apply(pd.to_numeric, errors = 'coerce') 
-#col값을 numeric으로 변경하는데, numerice으로 변경 안되는건 NaN으로 변경
-#제일 마지막 칼럼 이름을 지정해줘야 하는데 (df.iloc[:,-1]).name 이걸로 인덱싱
-
-df_1.Time = pd.to_datetime(df.Time) # 타입 변환
-df_1['Time'] = pd.DataFrame({'Time' : df_1.Time})
-
-#Dataframe에서 col 순서 바꾸기(end col -> first col으로)
-cols = df_1.columns.tolist()
-cols = cols[-1:] + cols[:-1]
